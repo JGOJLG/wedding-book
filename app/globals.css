@@ -1,26 +1,120 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcf9ec;
+  --paper: #fffdf6;
+  --butter: #f8f2d9;
+  --red: #b73b38;
+  --red-dark: #97312f;
+  --text: #4b3532;
+  --muted: #8e816d;
+  --border: #e7dfc3;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  font-family: var(--font-sans), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-book {
+  font-family: var(--font-book), Georgia, serif;
+}
+
+.paper-texture {
+  position: relative;
+  isolation: isolate;
+}
+
+.paper-texture::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  content: "";
+  opacity: 0.23;
+  background-image:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(112, 83, 56, 0.035) 0,
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(112, 83, 56, 0.025) 0,
+      transparent 28%
+    );
+}
+
+.book-shadow {
+  box-shadow:
+    0 34px 90px rgba(92, 67, 39, 0.1),
+    0 4px 14px rgba(92, 67, 39, 0.05);
+}
+
+.page-turn {
+  animation: pageFade 320ms ease-out;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #ddd3b4;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.72);
+  padding-left: 16px;
+  padding-right: 16px;
+  color: #4b3532;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.form-input::placeholder {
+  color: #aaa08e;
+}
+
+.form-input:focus {
+  border-color: rgba(183, 59, 56, 0.5);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(183, 59, 56, 0.07);
 }
