@@ -69,7 +69,7 @@ export default function AddLetterPage() {
 
   async function getNextPageOrder() {
     const { data, error } = await supabase
-      .from("letters")
+      .from("letters_to_kristin")
       .select("page_order")
       .order("page_order", { ascending: false })
       .limit(1);
@@ -106,7 +106,7 @@ export default function AddLetterPage() {
 
       const { error: uploadError } =
         await supabase.storage
-          .from("letter-photos")
+          .from("letters-to-kristin-photos")
           .upload(filePath, file, {
             cacheControl: "3600",
             upsert: false,
@@ -121,7 +121,7 @@ export default function AddLetterPage() {
 
       const { data: publicUrlData } =
         supabase.storage
-          .from("letter-photos")
+          .from("letters-to-kristin-photos")
           .getPublicUrl(filePath);
 
       photoUrls.push(publicUrlData.publicUrl);
@@ -176,7 +176,7 @@ export default function AddLetterPage() {
         : typedPageOrder;
 
       const { error: insertError } = await supabase
-        .from("letters")
+        .from("letters_to_kristin")
         .insert({
           name: trimmedName,
           relationship:
