@@ -29,7 +29,7 @@ export default function AdminPage() {
     setErrorMessage("");
 
     const { data, error } = await supabase
-      .from("letters")
+      .from("letters_to_kristin")
       .select(
         `
         id,
@@ -91,7 +91,7 @@ export default function AdminPage() {
     setErrorMessage("");
 
     const { error } = await supabase
-      .from("letters")
+      .from("letters_to_kristin")
       .delete()
       .eq("id", letter.id);
 
