@@ -59,7 +59,7 @@ export default function Home() {
     setErrorMessage("");
 
     const { data, error } = await supabase
-      .from("letters")
+      .from("letters_to_kristin")
       .select(
         `
         id,
